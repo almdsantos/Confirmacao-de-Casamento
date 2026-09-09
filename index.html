@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aliston Matheus & Ana Laura — 31 de outubro de 2026</title>
+<meta name="description" content="Confirme sua presença no casamento de Aliston Matheus e Ana Laura, 31 de outubro de 2026.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Tangerine:wght@400;700&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="petals" aria-hidden="true"></div>
+
+<main class="invite">
+
+  <!-- ====== CARD ====== -->
+  <section class="card">
+
+    <svg class="corner corner--tl" viewBox="0 0 220 220" aria-hidden="true"><use href="#flora"/></svg>
+    <svg class="corner corner--br" viewBox="0 0 220 220" aria-hidden="true"><use href="#flora"/></svg>
+
+    <div class="card__inner">
+
+      <p class="verse">
+        &ldquo;E, sobre todas estas coisas, revesti-vos de amor,<br>
+        que é o vínculo da perfeição.&rdquo;
+        <span class="verse__ref">Colossenses 3:14</span>
+      </p>
+
+      <div class="rule"><span>&#10084;</span></div>
+
+      <p class="lead">Com a bênção dos seus pais</p>
+
+      <div class="parents">
+        <div class="parents__side">
+          <p>Antônio Carlos A. Santos</p>
+          <p>e Regiane Karen Leite Santos</p>
+        </div>
+        <div class="parents__divider" aria-hidden="true"></div>
+        <div class="parents__side">
+          <p>Ailton Leite Barbosa</p>
+          <p>Nilda Ap. L. M Barbosa</p>
+        </div>
+      </div>
+
+      <p class="lead lead--invite">convidam para o casamento de seus filhos</p>
+
+      <h1 class="names">
+        <span>Aliston Matheus</span>
+        <span class="names__and">e</span>
+        <span>Ana Laura</span>
+      </h1>
+
+      <div class="rule"><span>&#10084;</span></div>
+
+      <div class="details">
+        <div class="details__item">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v3M17 2v3M3.5 8.5h17M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/></svg>
+          <div>
+            <span class="details__label">Dia</span>
+            <span class="details__value">31 de outubro de 2026</span>
+          </div>
+        </div>
+        <div class="details__item">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.25"/><path d="M12 7v5l3.2 2"/></svg>
+          <div>
+            <span class="details__label">Às</span>
+            <span class="details__value">16:00 horas</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="location">
+        <svg class="icon icon--church" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v3M9.5 5.5h5M12 8v13M6 21V11l6-4 6 4v10M6 21h12M9 21v-4h6v4"/></svg>
+        <p class="location__name">Igreja Comunidade Nossa Senhora Aparecida</p>
+        <p class="location__address">
+          Estr. dos Orquidófilos, 1098 — Vila Engenho Velho<br>
+          Embu das Artes - SP, 06843-385
+        </p>
+      </div>
+
+      <div class="rule"><span>&#10084;</span></div>
+
+      <div class="rsvp-banner">
+        <p>Favor confirmar até dia 20/09</p>
+      </div>
+
+      <p class="closing">Será uma alegria imensa ter você conosco!</p>
+
+      <button type="button" id="open-form" class="btn">Confirmar presença</button>
+
+    </div>
+  </section>
+
+  <!-- ====== FORM ====== -->
+  <section class="card card--form" id="form-card" hidden>
+    <svg class="corner corner--tl" viewBox="0 0 220 220" aria-hidden="true"><use href="#flora"/></svg>
+    <svg class="corner corner--br" viewBox="0 0 220 220" aria-hidden="true"><use href="#flora"/></svg>
+
+    <div class="card__inner">
+      <h2 class="form-title">Confirmação de presença</h2>
+      <p class="form-subtitle">Preencha seus dados e, se desejar, adicione quem vai com você.</p>
+
+      <form id="rsvp-form" novalidate>
+        <label class="field">
+          <span>Seu nome</span>
+          <input type="text" id="guest-name" name="guest-name" required autocomplete="name" placeholder="Digite seu nome completo">
+        </label>
+
+        <fieldset class="companions">
+          <legend>Pessoas que irão com você</legend>
+          <div id="companions-list"></div>
+          <button type="button" id="add-companion" class="btn btn--ghost">+ Adicionar pessoa</button>
+        </fieldset>
+
+        <button type="submit" id="submit-rsvp" class="btn btn--primary">Enviar confirmação</button>
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ====== SUCCESS ====== -->
+  <section class="card card--success" id="success-card" hidden>
+    <svg class="corner corner--tl" viewBox="0 0 220 220" aria-hidden="true"><use href="#flora"/></svg>
+    <svg class="corner corner--br" viewBox="0 0 220 220" aria-hidden="true"><use href="#flora"/></svg>
+    <div class="card__inner">
+      <div class="success-mark" aria-hidden="true">&#10084;</div>
+      <h2 class="form-title">Presença confirmada!</h2>
+      <p class="form-subtitle" id="success-message">Obrigado por confirmar. Contamos os dias para celebrar com você!</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- Shared decorative artwork, referenced via <use> above -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="flora">
+      <g class="flora__leaf">
+        <path d="M4 4C40 10 70 30 90 60C60 50 30 40 4 4Z"/>
+        <path d="M4 4C20 30 35 55 60 80C40 68 15 55 4 4Z"/>
+        <path d="M4 4C15 45 25 80 40 110C22 90 8 60 4 4Z"/>
+      </g>
+      <g class="flora__rose" transform="translate(14 14)">
+        <circle r="17"/>
+        <circle r="12.5"/>
+        <circle r="8" />
+      </g>
+      <g class="flora__buds">
+        <circle cx="55" cy="15" r="3.4"/>
+        <circle cx="68" cy="24" r="2.6"/>
+        <circle cx="45" cy="30" r="2.9"/>
+        <circle cx="78" cy="12" r="2.2"/>
+        <circle cx="34" cy="45" r="2.4"/>
+        <circle cx="60" cy="46" r="2"/>
+      </g>
+    </g>
+  </defs>
+</svg>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>
