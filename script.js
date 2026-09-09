@@ -5,12 +5,13 @@
 // →  Seus apps  →  SDK setup and configuration  →  Config
 // =====================================================================
 const firebaseConfig = {
-  apiKey: "SUA_API_KEY",
-  authDomain: "SEU_PROJETO.firebaseapp.com",
-  projectId: "SEU_PROJETO",
-  storageBucket: "SEU_PROJETO.appspot.com",
-  messagingSenderId: "SEU_SENDER_ID",
-  appId: "SEU_APP_ID",
+apiKey: "AIzaSyANNhRqvmE5eKE6RQXoeeVwtYUj7EVB0YE",
+  authDomain: "convite-casamento-8a4c5.firebaseapp.com",
+  databaseURL: "https://convite-casamento-8a4c5-default-rtdb.firebaseio.com",
+  projectId: "convite-casamento-8a4c5",
+  storageBucket: "convite-casamento-8a4c5.firebasestorage.app",
+  messagingSenderId: "805894049946",
+  appId: "1:805894049946:web:ac6ea393c082b9a8554f23",
 };
 
 // Nome da coleção onde as confirmações serão salvas no Firestore.
