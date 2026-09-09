@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirmações — Aliston Matheus & Ana Laura</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream: #f8f1de;
+    --card: #fffdf7;
+    --ink: #3f3324;
+    --ink-soft: #7a6c54;
+    --gold: #a9781f;
+    --gold-deep: #8a611a;
+    --wine: #7a2e35;
+    --green: #4f7a52;
+    --green-bg: #eaf3e8;
+    --red: #a13e3e;
+    --red-bg: #f6e9e9;
+    --line: #e7dcc0;
+    --shadow: rgba(74,58,36,0.12);
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    font-family:'Cormorant Garamond', Georgia, serif;
+    color:var(--ink);
+    background: var(--cream);
+    padding: clamp(16px, 4vw, 40px);
+  }
+
+  .wrap{ max-width: 760px; margin:0 auto; }
+
+  header{ text-align:center; margin-bottom: 24px; }
+  header h1{
+    font-family:'Cinzel', serif;
+    font-weight:600;
+    font-size: clamp(1.3rem, 4vw, 1.7rem);
+    color: var(--gold-deep);
+    margin: 0 0 4px;
+    letter-spacing: 0.02em;
+  }
+  header p{
+    margin:0;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  .summary{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:10px;
+    margin-bottom: 26px;
+  }
+  @media (max-width:560px){
+    .summary{ grid-template-columns: repeat(2, 1fr); }
+  }
+  .stat{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius:8px;
+    padding: 14px 10px;
+    text-align:center;
+    box-shadow: 0 6px 16px -10px var(--shadow);
+  }
+  .stat .num{
+    display:block;
+    font-family:'Cinzel', serif;
+    font-size: clamp(1.3rem, 5vw, 1.7rem);
+    font-weight:600;
+    color: var(--gold-deep);
+    line-height:1.1;
+  }
+  .stat.declined .num{ color: var(--red); }
+  .stat .label{
+    display:block;
+    font-size:0.78rem;
+    color: var(--ink-soft);
+    margin-top:2px;
+  }
+
+  .state-msg{
+    text-align:center;
+    color: var(--ink-soft);
+    font-style: italic;
+    padding: 30px 10px;
+  }
+  .state-msg.error{ color: var(--red); }
+
+  .entry{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius:10px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    box-shadow: 0 6px 16px -12px var(--shadow);
+  }
+  .entry__top{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .entry__name{
+    font-size: 1.25rem;
+    font-weight:600;
+    color: var(--ink);
+    margin:0;
+  }
+  .entry__time{
+    font-size:0.78rem;
+    color: var(--ink-soft);
+    white-space:nowrap;
+  }
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:0.85rem;
+    padding: 3px 10px;
+    border-radius:999px;
+    margin: 6px 0 0;
+  }
+  .badge.yes{ background: var(--green-bg); color: var(--green); }
+  .badge.no{ background: var(--red-bg); color: var(--red); }
+
+  .companions{
+    margin: 10px 0 0;
+    padding: 0;
+    list-style:none;
+    border-top: 1px dashed var(--line);
+    padding-top: 8px;
+  }
+  .companions li{
+    color: var(--ink-soft);
+    font-size:0.98rem;
+    padding: 2px 0 2px 18px;
+    position:relative;
+  }
+  .companions li::before{
+    content:"–";
+    position:absolute;
+    left:0;
+    color: var(--gold);
+  }
+  .companions-label{
+    font-size:0.78rem;
+    color: var(--ink-soft);
+    margin: 8px 0 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>Confirmações do casamento</h1>
+    <p>Aliston Matheus &amp; Ana Laura — 31/10/2026</p>
+  </header>
+
+  <div class="summary">
+    <div class="stat">
+      <span class="num" id="stat-confirmados">–</span>
+      <span class="label">Confirmados</span>
+    </div>
+    <div class="stat">
+      <span class="num" id="stat-acompanhantes">–</span>
+      <span class="label">Acompanhantes</span>
+    </div>
+    <div class="stat">
+      <span class="num" id="stat-total">–</span>
+      <span class="label">Total de pessoas</span>
+    </div>
+    <div class="stat declined">
+      <span class="num" id="stat-nao-vao">–</span>
+      <span class="label">Não vão</span>
+    </div>
+  </div>
+
+  <div id="state-msg" class="state-msg">Carregando confirmações...</div>
+  <div id="list"></div>
+</div>
+
+<script type="module">
+  // =====================================================================
+  // CONFIGURAÇÃO DO FIREBASE
+  // Use os MESMOS valores já configurados no index.html do site principal.
+  // =====================================================================
+  const firebaseConfig = {
+    apiKey: "AIzaSyANNhRqvmE5eKE6RQXoeeVwtYUj7EVB0YE",
+    authDomain: "convite-casamento-8a4c5.firebaseapp.com",
+    databaseURL: "https://convite-casamento-8a4c5-default-rtdb.firebaseio.com",
+    projectId: "convite-casamento-8a4c5",
+    storageBucket: "convite-casamento-8a4c5.firebasestorage.app",
+    messagingSenderId: "805894049946",
+    appId: "1:805894049946:web:ac6ea393c082b9a8554f23",
+  };
+
+  const COLLECTION_NAME = "confirmacoes";
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+  import {
+    getFirestore,
+    collection,
+    query,
+    orderBy,
+    onSnapshot,
+  } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const listEl = document.getElementById("list");
+  const stateMsg = document.getElementById("state-msg");
+  const statConfirmados = document.getElementById("stat-confirmados");
+  const statAcompanhantes = document.getElementById("stat-acompanhantes");
+  const statTotal = document.getElementById("stat-total");
+  const statNaoVao = document.getElementById("stat-nao-vao");
+
+  // Um documento é considerado "vai" a menos que tenha explicitamente
+  // confirmado: false (o formulário atual só cria confirmações de quem vai,
+  // então isso deixa a página pronta caso um dia exista opção de recusa).
+  function isAttending(data) {
+    return data.confirmado !== false;
+  }
+
+  function formatDate(timestamp) {
+    if (!timestamp || typeof timestamp.toDate !== "function") return "";
+    return timestamp.toDate().toLocaleString("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  }
+
+  function renderEntry(data) {
+    const attending = isAttending(data);
+    const companions = Array.isArray(data.acompanhantes) ? data.acompanhantes : [];
+
+    const entry = document.createElement("article");
+    entry.className = "entry";
+
+    const companionsHtml = attending && companions.length
+      ? `
+        <p class="companions-label">Acompanhantes:</p>
+        <ul class="companions">
+          ${companions.map((c) => `<li>${escapeHtml(c)}</li>`).join("")}
+        </ul>
+      `
+      : "";
+
+    entry.innerHTML = `
+      <div class="entry__top">
+        <p class="entry__name">${escapeHtml(data.nome || "Sem nome")}</p>
+        <span class="entry__time">${formatDate(data.criadoEm)}</span>
+      </div>
+      <span class="badge ${attending ? "yes" : "no"}">
+        ${attending ? "✅ Confirmou presença" : "❌ Não poderá comparecer"}
+      </span>
+      ${companionsHtml}
+    `;
+    return entry;
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = String(str);
+    return div.innerHTML;
+  }
+
+  function renderAll(docs) {
+    listEl.innerHTML = "";
+
+    if (docs.length === 0) {
+      stateMsg.textContent = "Nenhuma confirmação registrada ainda.";
+      stateMsg.classList.remove("error");
+      stateMsg.style.display = "block";
+      updateStats([]);
+      return;
+    }
+
+    stateMsg.style.display = "none";
+    docs.forEach((data) => listEl.appendChild(renderEntry(data)));
+    updateStats(docs);
+  }
+
+  function updateStats(docs) {
+    const attendingDocs = docs.filter(isAttending);
+    const decliningCount = docs.length - attendingDocs.length;
+
+    const confirmadosCount = attendingDocs.length;
+    const acompanhantesCount = attendingDocs.reduce((sum, data) => {
+      const companions = Array.isArray(data.acompanhantes) ? data.acompanhantes : [];
+      return sum + companions.length;
+    }, 0);
+
+    statConfirmados.textContent = confirmadosCount;
+    statAcompanhantes.textContent = acompanhantesCount;
+    statTotal.textContent = confirmadosCount + acompanhantesCount;
+    statNaoVao.textContent = decliningCount;
+  }
+
+  const q = query(collection(db, COLLECTION_NAME), orderBy("criadoEm", "desc"));
+
+  onSnapshot(
+    q,
+    (snapshot) => {
+      const docs = snapshot.docs.map((doc) => doc.data());
+      renderAll(docs);
+    },
+    (error) => {
+      console.error("Erro ao carregar confirmações:", error);
+      stateMsg.textContent = "Não foi possível carregar as confirmações. Verifique a configuração do Firebase e as regras do Firestore (é preciso permitir leitura para esta página).";
+      stateMsg.classList.add("error");
+      stateMsg.style.display = "block";
+    }
+  );
+</script>
+</body>
+</html>

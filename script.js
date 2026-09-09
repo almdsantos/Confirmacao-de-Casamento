@@ -5,7 +5,7 @@
 // →  Seus apps  →  SDK setup and configuration  →  Config
 // =====================================================================
 const firebaseConfig = {
-apiKey: "AIzaSyANNhRqvmE5eKE6RQXoeeVwtYUj7EVB0YE",
+  apiKey: "AIzaSyANNhRqvmE5eKE6RQXoeeVwtYUj7EVB0YE",
   authDomain: "convite-casamento-8a4c5.firebaseapp.com",
   databaseURL: "https://convite-casamento-8a4c5-default-rtdb.firebaseio.com",
   projectId: "convite-casamento-8a4c5",
